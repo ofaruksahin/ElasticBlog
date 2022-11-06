@@ -1,0 +1,13 @@
+﻿global using AutoMapper;
+global using ElasticBlog.Domain.DomainEvents;
+global using ElasticBlog.Domain.IRepositories;
+global using ElasticBlog.Persistence;
+global using ElasticBlog.Persistence.Repositories;
+global using FluentValidation;
+global using FluentValidation.Results;
+global using MediatR;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using ElasticBlog.Domain.IServices;
+global using ElasticBlog.Persistence.Services;
