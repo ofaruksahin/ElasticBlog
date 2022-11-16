@@ -1,7 +1,4 @@
-﻿using ElasticBlog.Application.Exceptions;
-using ElasticBlog.Domain.Shared.Response;
-
-namespace ElasticBlog.Application.Pipelines
+﻿namespace ElasticBlog.Application.Pipelines
 {
     public class FluentValidationPipeline<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>

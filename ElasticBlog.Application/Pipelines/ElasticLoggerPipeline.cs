@@ -1,6 +1,4 @@
-﻿using ElasticBlog.Domain.Shared.Response;
-
-namespace ElasticBlog.Application.Pipelines
+﻿namespace ElasticBlog.Application.Pipelines
 {
     public class ElasticLoggerPipeline<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>

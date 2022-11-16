@@ -1,7 +1,4 @@
-﻿using ElasticBlog.Domain.Shared.Abstractions;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace ElasticBlog.Persistence.EntityConfigurations
+﻿namespace ElasticBlog.Persistence.EntityConfigurations
 {
     public class BaseEntityConfiguration<TEntity> : IEntityTypeConfiguration<TEntity>
         where TEntity : BaseEntity

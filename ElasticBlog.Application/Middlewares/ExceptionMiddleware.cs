@@ -1,9 +1,4 @@
-﻿using ElasticBlog.Application.Exceptions;
-using ElasticBlog.Domain.Shared.Response;
-using Microsoft.AspNetCore.Http;
-using System.Text.Json;
-
-namespace ElasticBlog.Application.Middlewares
+﻿namespace ElasticBlog.Application.Middlewares
 {
     public class ExceptionMiddleware
     {

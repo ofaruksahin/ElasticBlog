@@ -1,6 +1,4 @@
-﻿using ElasticBlog.Domain.Shared.Abstractions;
-
-namespace ElasticBlog.Persistence.Repositories
+﻿namespace ElasticBlog.Persistence.Repositories
 {
     public abstract class BaseRepository<TEntity> : IRepository<TEntity>
         where TEntity : BaseEntity

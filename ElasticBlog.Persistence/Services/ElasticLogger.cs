@@ -1,6 +1,4 @@
-﻿using ElasticBlog.Domain.IServices;
-
-namespace ElasticBlog.Persistence.Services
+﻿namespace ElasticBlog.Persistence.Services
 {
     public class ElasticLogger : IElasticLogger
     {

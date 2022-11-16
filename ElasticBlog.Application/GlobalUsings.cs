@@ -11,3 +11,7 @@ global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using ElasticBlog.Domain.IServices;
 global using ElasticBlog.Persistence.Services;
+global using ElasticBlog.Application.Exceptions;
+global using ElasticBlog.Domain.Shared.Response;
+global using Microsoft.AspNetCore.Http;
+global using System.Text.Json;

@@ -1,9 +1,4 @@
-﻿using ElasticBlog.Domain.Models;
-using ElasticBlog.Domain.Shared.Abstractions;
-using ElasticBlog.Persistence.Shared;
-using MediatR;
-
-namespace ElasticBlog.Persistence
+﻿namespace ElasticBlog.Persistence
 {
     public class ElasticBlogDbContext : DbContext, IUnitOfWork
     {
