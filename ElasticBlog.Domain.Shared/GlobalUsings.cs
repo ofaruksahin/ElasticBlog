@@ -4,3 +4,4 @@ global using MediatR;
 global using Microsoft.AspNetCore.Mvc;
 global using System.Net;
 global using System.Text.Json.Serialization;
+global using ElasticBlog.Domain.Shared.Pagination;

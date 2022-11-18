@@ -13,7 +13,15 @@
 
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
-            return await next();
+            try
+            {
+                return await next();
+            }
+            catch (Exception ex)
+            {
+                //TODO: Loglama işlemi yapılacak
+                throw ex;
+            }
         }
     }
 }

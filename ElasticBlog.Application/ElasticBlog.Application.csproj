@@ -21,6 +21,14 @@
     <Folder Include="Mappings\" />
     <Folder Include="Models\ResponseModels\" />
     <Folder Include="Models\RequestModels\" />
+    <Folder Include="Models\RequestModels\Category\" />
+    <Folder Include="Models\ResponseModels\Category\" />
+    <Folder Include="Commands\Category\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Models\RequestModels\Category\" />
+    <None Remove="Models\ResponseModels\Category\" />
+    <None Remove="Commands\Category\" />
+  </ItemGroup>
 </Project>

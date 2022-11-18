@@ -15,3 +15,5 @@ global using ElasticBlog.Application.Exceptions;
 global using ElasticBlog.Domain.Shared.Response;
 global using Microsoft.AspNetCore.Http;
 global using System.Text.Json;
+global using ElasticBlog.Application.Constants;
+global using ElasticBlog.Domain.Models;
