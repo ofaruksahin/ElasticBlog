@@ -29,7 +29,7 @@ namespace ElasticBlog.Persistence.Repositories
 
         public virtual async void Delete(TEntity entity)
         {
-            entity.Status = Domain.Shared.Enumerations.EnumRecordStatus.Passive;
+            entity.SetStatus(Domain.Shared.Enumerations.EnumRecordStatus.Passive);
             entity.SetLastModifiedDate();
             _dbContext.Set<TEntity>().Update(entity);
         }
@@ -38,7 +38,7 @@ namespace ElasticBlog.Persistence.Repositories
         {
             foreach(var item in entities)
             {
-                item.Status = Domain.Shared.Enumerations.EnumRecordStatus.Passive;
+                item.SetStatus(Domain.Shared.Enumerations.EnumRecordStatus.Passive);
                 item.SetLastModifiedDate();
             }
 

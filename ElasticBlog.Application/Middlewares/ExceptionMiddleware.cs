@@ -1,4 +1,6 @@
-﻿namespace ElasticBlog.Application.Middlewares
+﻿using ElasticBlog.Domain.ValueObjects;
+
+namespace ElasticBlog.Application.Middlewares
 {
     public class ExceptionMiddleware
     {
@@ -30,6 +32,7 @@
 
         private async Task WriteResponse(HttpContext context, object data = null, List<string> message = null, int statusCode = 500)
         {
+            await LogElastic(context,message);
             var response = context.Response;
             response.ContentType = "application/json";
             response.StatusCode = statusCode;
@@ -38,6 +41,23 @@
             var json = JsonSerializer.Serialize(baseResponse);
 
             await response.WriteAsync(json);
+        }
+
+        private async Task LogElastic(HttpContext context,List<string> message)
+        {
+            if (message == null)
+                message = new List<string>();
+            var paths = context.Request.Path.ToString().Split('/').ToList();
+            paths.RemoveAll(f => string.IsNullOrEmpty(f));
+            string controllerName = string.Empty;
+            string actionName = string.Empty;
+            if (paths.Count >= 1)
+                controllerName = paths[0];
+            if (paths.Count >= 2)
+                actionName = paths[1];
+
+            var logModel = new LogModel(DateTime.Now,$"{controllerName}/{actionName}", string.Join("\n", message));
+            await _logger.LogException(logModel);
         }
     }
 }

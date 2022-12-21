@@ -9,6 +9,10 @@
         private Post _post;
         public virtual Post Post => _post;
 
+        protected Tag()
+        {
+        }
+
         public Tag(string name)
         {
             Name = name;

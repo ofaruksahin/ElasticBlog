@@ -17,6 +17,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
+    <PackageReference Include="NEST" Version="7.17.5" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,4 +25,16 @@
     <ProjectReference Include="..\ElasticBlog.Persistence.Shared\ElasticBlog.Persistence.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Search\" />
+    <None Remove="Search\Elastic\" />
+    <None Remove="Search\Elastic\Interfaces\" />
+    <None Remove="Search\Elastic\Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Search\" />
+    <Folder Include="Search\Elastic\" />
+    <Folder Include="Search\Elastic\Interfaces\" />
+    <Folder Include="Search\Elastic\Models\" />
+  </ItemGroup>
 </Project>

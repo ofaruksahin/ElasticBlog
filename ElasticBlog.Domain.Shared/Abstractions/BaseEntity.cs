@@ -8,7 +8,7 @@
 
         public DateTime? LastModifiedDate { get; private set; }
 
-        public EnumRecordStatus Status { get; set; }
+        public EnumRecordStatus Status { get; protected set; }
 
         protected BaseEntity()
         {
@@ -45,6 +45,11 @@
         public void SetLastModifiedDate()
         {
             LastModifiedDate = DateTime.Now;
+        }
+
+        public void SetStatus(EnumRecordStatus status)
+        {
+            Status = status;
         }
     }
 }

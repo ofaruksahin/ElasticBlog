@@ -1,4 +1,6 @@
-﻿namespace ElasticBlog.Domain.Models
+﻿using ElasticBlog.Domain.DomainEvents;
+
+namespace ElasticBlog.Domain.Models
 {
     public class Post : BaseEntity
     {
@@ -12,6 +14,10 @@
         private List<Tag> _tags;
         public IReadOnlyList<Tag> Tags => _tags;
 
+        protected Post()
+        {
+        }
+
         public Post(int categoryId, string title, string content)
         {
             CategoryId = categoryId;
@@ -22,6 +28,22 @@
         }
 
         public static Post Create(int categoryId, string title, string content)
-            => new Post(categoryId, title, content);
+        {
+            var post = new Post(categoryId, title, content);
+            post.AddDomainEvent(new PostCreatedDomainEvent(post));
+            return post;
+        }
+
+        public void AddTag(string tag)
+        {
+            if (_tags == null)
+                _tags = new List<Tag>();
+
+            var exists = _tags.Any(f => string.Equals(f.Name, tag, StringComparison.InvariantCultureIgnoreCase));
+            if (exists)
+                return;
+            var tagModel = Tag.Create(tag);
+            _tags.Add(tagModel);
+        }
     }
 }

@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticBlog.Persistence.Sha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticBlog.Persistence", "ElasticBlog.Persistence\ElasticBlog.Persistence.csproj", "{7FCF317E-DD28-411C-A649-4AC502A1D27E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticBlog.Application.Tests", "ElasticBlog.Application.Tests\ElasticBlog.Application.Tests.csproj", "{7979D30C-F270-4CF2-9DEA-EEF9D53BBD85}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,9 +48,5 @@ Global
 		{7FCF317E-DD28-411C-A649-4AC502A1D27E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FCF317E-DD28-411C-A649-4AC502A1D27E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FCF317E-DD28-411C-A649-4AC502A1D27E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7979D30C-F270-4CF2-9DEA-EEF9D53BBD85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7979D30C-F270-4CF2-9DEA-EEF9D53BBD85}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7979D30C-F270-4CF2-9DEA-EEF9D53BBD85}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7979D30C-F270-4CF2-9DEA-EEF9D53BBD85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

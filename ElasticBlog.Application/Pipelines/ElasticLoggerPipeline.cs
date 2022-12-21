@@ -19,7 +19,6 @@
             }
             catch (Exception ex)
             {
-                //TODO: Loglama işlemi yapılacak
                 throw ex;
             }
         }

@@ -10,4 +10,10 @@
     <ProjectReference Include="..\ElasticBlog.Domain.Shared\ElasticBlog.Domain.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="ValueObjects\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ValueObjects\" />
+  </ItemGroup>
 </Project>
