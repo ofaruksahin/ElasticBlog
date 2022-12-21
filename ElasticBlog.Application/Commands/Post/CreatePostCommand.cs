@@ -1,4 +1,5 @@
 ﻿using ElasticBlog.Application.Models.RequestModels.Post;
+using ElasticBlog.Application.Models.ResponseModels.Post;
 
 namespace ElasticBlog.Application.Commands.Post
 {
@@ -20,7 +21,18 @@ namespace ElasticBlog.Application.Commands.Post
     {
         public CreatePostCommandValidator()
         {
-
+            RuleFor(f => f.CategoryId).GreaterThan(0).WithMessage("Kategori Id'si 0'dan büyük olmalıdır");
+            RuleFor(f => f.Title).NotEmpty().WithMessage("İçerik başlığı boş olmamalıdır");
+            RuleFor(f => f.Title).MaximumLength(100).WithMessage("İçerik başlığı 100 karakterden boş olmamalıdır");
+            RuleFor(f => f.Content).NotEmpty().WithMessage("İçerik boş olamaz");
+            When(f => f.Tags != null && f.Tags.Any(), () =>
+            {
+                RuleForEach(f => f.Tags).ChildRules(tag =>
+                {
+                    tag.RuleFor(f => f.Name).NotEmpty().WithMessage("İçerik tag'i boş olmamalıdır");
+                    tag.RuleFor(f => f.Name).MaximumLength(100).WithMessage("İçerik tag'i 100 karakterden fazla olamaz");
+                });
+            });
         }
     }
 
@@ -43,7 +55,11 @@ namespace ElasticBlog.Application.Commands.Post
             if (category == null)
                 return BaseResponse.Fail(new NoContent(), "Kategori bulunamadı");
             var post = Domain.Models.Post.Create(request.CategoryId, request.Title, request.Content);
-            return BaseResponse.Success(new NoContent());
+            request.Tags.ForEach(tag => post.AddTag(tag.Name));
+            await _postRepository.AddAsync(post);
+            await _postRepository.UnitOfWork.CompleteTransaction();
+            var responseModel = _mapper.Map<CreatedPostResponseModel>(post);
+            return BaseResponse.Success(responseModel);
         }
     }
 }

@@ -28,6 +28,7 @@
     <Folder Include="Queries\Category\" />
     <Folder Include="Models\RequestModels\Post\" />
     <Folder Include="Commands\Post\" />
+    <Folder Include="Models\ResponseModels\Post\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,5 +38,6 @@
     <None Remove="Queries\Category\" />
     <None Remove="Models\RequestModels\Post\" />
     <None Remove="Commands\Post\" />
+    <None Remove="Models\ResponseModels\Post\" />
   </ItemGroup>
 </Project>
