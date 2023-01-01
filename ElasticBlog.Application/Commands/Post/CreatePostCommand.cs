@@ -49,7 +49,7 @@ namespace ElasticBlog.Application.Commands.Post
             _categoryRepository = categoryRepository;
         }
 
-        public async Task<BaseResponse> Handle(CreatePostCommand request, CancellationToken cancellationToken)
+        public async Task<BaseResponse> Handle(CreatePostCommand request, CancellationToken cancellationToken) 
         {
             var category = await _categoryRepository.GetByIdActiveRecordAsync(request.CategoryId);
             if (category == null)

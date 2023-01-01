@@ -2,5 +2,6 @@
 {
     public interface IPostRepository : IRepository<Post>
     {
+        Task AddElastic(Post post);
     }
 }

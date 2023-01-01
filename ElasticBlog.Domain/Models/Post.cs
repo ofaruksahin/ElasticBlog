@@ -43,6 +43,7 @@ namespace ElasticBlog.Domain.Models
             if (exists)
                 return;
             var tagModel = Tag.Create(tag);
+            tagModel.SetCreatedDate();
             _tags.Add(tagModel);
         }
     }

@@ -17,7 +17,7 @@
                 .HasForeignKey(f => f.PostId)
                 .OnDelete(DeleteBehavior.ClientNoAction);
 
-            builder.ToTable("tags");
+            //builder.ToTable("tags");
         }
     }
 }

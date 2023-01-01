@@ -31,7 +31,7 @@
                 .HasForeignKey(f => f.PostId)
                 .OnDelete(DeleteBehavior.ClientNoAction);
 
-            builder.ToTable("posts");
+            //builder.ToTable("posts");
         }
     }
 }

@@ -2,9 +2,16 @@
 {
     public class PostCreatedDomainEventHandler : INotificationHandler<PostCreatedDomainEvent>
     {
+        private IPostRepository _postRepository;
+
+        public PostCreatedDomainEventHandler(IPostRepository postRepository)
+        {
+            _postRepository = postRepository;
+        }
+
         public async Task Handle(PostCreatedDomainEvent notification, CancellationToken cancellationToken)
         {
-           //TODO: Db'yi eklenen post bilgisini elasticsearch indexlemek gerekmekte
+            await _postRepository.AddElastic(notification.Post);
         }
     }
 }

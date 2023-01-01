@@ -17,7 +17,7 @@
                 .HasForeignKey(f => f.CategoryId)
                 .OnDelete(DeleteBehavior.ClientNoAction);
 
-            builder.ToTable("categories");
+            //builder.ToTable("categories");
         }
     }
 }
