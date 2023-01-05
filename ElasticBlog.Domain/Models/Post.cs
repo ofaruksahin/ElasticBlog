@@ -46,5 +46,11 @@ namespace ElasticBlog.Domain.Models
             tagModel.SetCreatedDate();
             _tags.Add(tagModel);
         }
+
+        public void SetStatusChangedToPassive()
+        {
+            SetStatus(EnumRecordStatus.Passive);
+            AddDomainEvent(new PostStatusChangedToPassiveDomainEvent(this));
+        }
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace ElasticBlog.Domain.ValueObjects
+﻿using ElasticBlog.Domain.ElasticModel;
+
+namespace ElasticBlog.Domain.ValueObjects
 {
-    public class LogModel
+    public class LogModel : BaseElasticModel
     {
         public DateTime RequestDate { get; set; }
         public string Path { get;private set; }

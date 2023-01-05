@@ -33,7 +33,7 @@ namespace ElasticBlog.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [ProducesResponseType(typeof(BaseResponse<List<GetAllResponseModel>>),StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BaseResponse<List<GetAllCategoryResponseModel>>),StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(BaseResponse<NoContent>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(BaseResponse<NoContent>), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(BaseResponse<NoContent>), StatusCodes.Status500InternalServerError)]

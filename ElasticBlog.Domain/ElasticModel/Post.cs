@@ -1,7 +1,7 @@
 ﻿using System;
-namespace ElasticBlog.Persistence.Search.Elastic.Models
+namespace ElasticBlog.Domain.ElasticModel
 {
-    public class Post
+    public class Post : BaseElasticModel
     {
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }

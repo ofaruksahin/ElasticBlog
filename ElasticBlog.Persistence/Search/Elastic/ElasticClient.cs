@@ -1,11 +1,12 @@
-﻿using ElasticBlog.Persistence.Search.Elastic.Interfaces;
+﻿using ElasticBlog.Domain.ElasticModel;
+using ElasticBlog.Persistence.Search.Elastic.Interfaces;
 using ElasticBlog.Persistence.Search.Elastic.Models;
 using Nest;
 
 namespace ElasticBlog.Persistence.Search.Elastic
 {
     public class ElasticClient<TEntity> : IElasticClient<TEntity>
-        where TEntity : class
+        where TEntity : BaseElasticModel
     {
         private Nest.ElasticClient _client;
 
@@ -36,7 +37,20 @@ namespace ElasticBlog.Persistence.Search.Elastic
 
         public async Task<IndexResponse> Index(TEntity entity, string indexName)
         {
-            return await _client.IndexAsync(entity, request => request.Index(indexName));
+            object id = entity.Id;
+            if (entity.Id < 1)
+                id = string.Empty;
+            return await _client.IndexAsync(entity, request => request.Index(indexName).Id(new Id(id)));
+        }
+
+        public async Task<ISearchResponse<TEntity>> Search(Func<SearchDescriptor<TEntity>, ISearchRequest> searchPredicate)
+        {
+            return await _client.SearchAsync<TEntity>(searchPredicate);
+        }
+
+        public async Task<DeleteByQueryResponse> Delete(Func<DeleteByQueryDescriptor<TEntity>, IDeleteByQueryRequest> deletePredicate)
+        {
+            return await _client.DeleteByQueryAsync<TEntity>(deletePredicate);
         }
     }
 }

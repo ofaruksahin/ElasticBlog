@@ -9,7 +9,7 @@ namespace ElasticBlog.Application.Mappings
             CreateMap<Category, CreatedCategoryResponseModel>()
                 .ForMember(f => f.Id, f => f.MapFrom(f => f.Id));
 
-            CreateMap<Category, GetAllResponseModel>()
+            CreateMap<Category, GetAllCategoryResponseModel>()
                 .ForMember(f => f.Id, f => f.MapFrom(f => f.Id))
                 .ForMember(f => f.Name, f => f.MapFrom(f => f.Name));
 

@@ -4,36 +4,35 @@ namespace ElasticBlog.Persistence.Repositories
 {
     public class PostRepository : BaseRepository<Post>, IPostRepository
     {
-        private ICategoryRepository _categoryRepository;
-        private IElasticClient<Search.Elastic.Models.Post> _elasticClient;
+        private IElasticClient<Domain.ElasticModel.Post> _elasticClient;
 
         public PostRepository(
             ElasticBlogDbContext dbContext,
-            ICategoryRepository categoryRepository,
-            IElasticClient<Search.Elastic.Models.Post> elasticClient)
+            IElasticClient<Domain.ElasticModel.Post> elasticClient)
             : base(dbContext)
         {
-            _categoryRepository = categoryRepository;
             _elasticClient = elasticClient;
         }
 
-        public async Task AddElastic(Post post)
+        public async Task AddAsync(Domain.ElasticModel.Post post)
         {
-            var category = await _categoryRepository.GetByIdActiveRecordAsync(post.CategoryId);
-            if (category == null) return;
-            Search.Elastic.Models.Post elasticModel = new Search.Elastic.Models.Post
+            await _elasticClient.CreateIndex("posts", f => f.Map<Domain.ElasticModel.Post>(y => y.AutoMap()));
+            var response = await _elasticClient.Index(post, "posts");
+            if (!response.IsValid) throw new Exception();
+        }
+
+        public async Task<List<Domain.ElasticModel.Post>> GetPostsFromElastic()
+        {
+            var responses = await _elasticClient.Search(f => f.Index("posts").MatchAll());
+            return responses.Hits.Select(f => new Domain.ElasticModel.Post
             {
-                CategoryId = post.CategoryId,
-                CategoryName = category.Name,
-                Title = post.Title,
-                Content = post.Content,
-                Tags = post.Tags.Select(f=>f.Name).ToList()
-            };
-
-            await _elasticClient.CreateIndex("posts",f=>
-                f.Map<Search.Elastic.Models.Post>(y=>y.AutoMap()));
-
-            await _elasticClient.Index(elasticModel, "posts");
+                Id = f.Source.Id,
+                CategoryId = f.Source.CategoryId,
+                CategoryName = f.Source.CategoryName,
+                Title = f.Source.Title,
+                Content = f.Source.Content,
+                Tags = f.Source.Tags
+            }).ToList();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace ElasticBlog.Application.Queries.Category
         public async Task<BaseResponse> Handle(GetAllQuery request, CancellationToken cancellationToken)
         {
             var categories = await _categoryRepository.GetAllActiveRecordsAsync();
-            var responseModel = _mapper.Map<List<GetAllResponseModel>>(categories);
+            var responseModel = _mapper.Map<List<GetAllCategoryResponseModel>>(categories);
             return BaseResponse.Success(responseModel);
         }
     }

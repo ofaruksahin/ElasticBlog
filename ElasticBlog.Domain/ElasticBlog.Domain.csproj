@@ -12,8 +12,10 @@
 
   <ItemGroup>
     <None Remove="ValueObjects\" />
+    <None Remove="ElasticModel\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ValueObjects\" />
+    <Folder Include="ElasticModel\" />
   </ItemGroup>
 </Project>
